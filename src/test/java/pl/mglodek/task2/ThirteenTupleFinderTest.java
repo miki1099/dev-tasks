@@ -30,7 +30,7 @@ class ThirteenTupleFinderTest {
 
     @ParameterizedTest
     @MethodSource("dataInput")
-    void testSimpleFactory(List<Integer> inputData, List<ThirteenTuple> expectedResult) {
+    void testThirteenTupleFinder(List<Integer> inputData, List<ThirteenTuple> expectedResult) {
         //given
         ThirteenTupleFinder instance = ThirteenTupleFinder.getInstance();
 

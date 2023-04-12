@@ -23,7 +23,7 @@ class IntListSummaryProviderTest {
 
     @ParameterizedTest
     @MethodSource("dataInput")
-    void testSimpleFactory(List<Integer> inputData, List<Integer> expectedResult, int expectedCount, long expectedDistinctCount, int expectedMin,
+    void testIntListSummmaryProvider(List<Integer> inputData, List<Integer> expectedResult, int expectedCount, long expectedDistinctCount, int expectedMin,
             int expectedMax) {
         //given
         IntListSummaryProvider instance = IntListSummaryProvider.getInstance();
