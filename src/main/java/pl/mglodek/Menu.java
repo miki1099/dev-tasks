@@ -1,5 +1,6 @@
 package pl.mglodek;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -9,6 +10,8 @@ import pl.mglodek.task1.IntListSummary;
 import pl.mglodek.task1.IntListSummaryProvider;
 import pl.mglodek.task2.ThirteenTuple;
 import pl.mglodek.task2.ThirteenTupleFinder;
+import pl.mglodek.task3.GraphCountFinder;
+import pl.mglodek.task3.GraphEdge;
 
 @UtilityClass
 public class Menu {
@@ -57,10 +60,6 @@ public class Menu {
         thirteenTuples.forEach(System.out::println);
     }
 
-    private static void runThirdTask(Scanner scanner) {
-
-    }
-
     private static List<Integer> getIntList(Scanner scanner) {
         System.out.println("Enter numbers separated by spaces");
         String numbersInList = scanner.nextLine().trim();
@@ -74,6 +73,38 @@ public class Menu {
             System.out.println("Please enter correct integers");
         }
         return List.of();
+    }
+
+    private static void runThirdTask(Scanner scanner) {
+        List<GraphEdge> edgeList = getEdgeList(scanner);
+
+        GraphCountFinder instance = GraphCountFinder.getInstance();
+        int differentGraphs = instance.find(edgeList);
+        System.out.printf("There are %d different graphs%n", differentGraphs);
+    }
+
+    private static List<GraphEdge> getEdgeList(Scanner scanner) {
+        System.out.println("Enter how many edges you will input:");
+        int edgesLines = scanner.nextInt();
+
+        System.out.println("Enter 2 numbers separated by space to enter edge and hit enter");
+
+        List<GraphEdge> edges = new ArrayList<>();
+
+        while (edgesLines > 0) {
+            String numbersInList = scanner.nextLine().trim();
+            String[] numbers = numbersInList.split(" ");
+            try {
+                int startVertex = Integer.parseInt(numbers[0]);
+                int endVertex = Integer.parseInt(numbers[1]);
+                edges.add(new GraphEdge(startVertex, endVertex));
+                edgesLines--;
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter correct integers");
+            }
+        }
+
+        return edges;
     }
 
 }
