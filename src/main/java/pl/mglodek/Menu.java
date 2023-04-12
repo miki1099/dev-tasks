@@ -7,6 +7,8 @@ import java.util.Scanner;
 import lombok.experimental.UtilityClass;
 import pl.mglodek.task1.IntListSummary;
 import pl.mglodek.task1.IntListSummaryProvider;
+import pl.mglodek.task2.ThirteenTuple;
+import pl.mglodek.task2.ThirteenTupleFinder;
 
 @UtilityClass
 public class Menu {
@@ -45,7 +47,14 @@ public class Menu {
     }
 
     private static void runSecondTask(Scanner scanner) {
+        List<Integer> intList = getIntList(scanner);
+        if(intList.isEmpty()) {
+            return;
+        }
 
+        List<ThirteenTuple> thirteenTuples = ThirteenTupleFinder.getInstance()
+                .find(intList);
+        thirteenTuples.forEach(System.out::println);
     }
 
     private static void runThirdTask(Scanner scanner) {
